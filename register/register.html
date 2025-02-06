@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Cybersecurity Blog - Register</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      background-color: #0a0f3c;
+      color: white;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav a:hover {
+      color: #ff3b3b;
+    }
+    .form-section {
+      background: white;
+      padding: 2rem;
+      margin: 2rem auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .form-section h2 {
+      text-align: center;
+      color: #0a0f3c;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group input:focus {
+      border-color: #0a0f3c;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: #0a0f3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover {
+      background-color: #1e3b70;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">CyberGuard Insights</div>
+      <nav class="nav">
+        <ul>
+         
+         
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="form-section" id="register">
+    <h2>User Registration</h2>
+    <form id="registrationForm">
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" required>
+        <div class="error" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="regNumber">Registration Number:</label>
+        <input type="text" id="regNumber" placeholder="BCS-00-0000-0000" required>
+        <div class="error" id="regError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="sex">Sex:</label>
+        <select id="sex" required>
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <div class="error" id="emailError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="region">Region:</label>
+        <select id="region" required></select>
+      </div>
+
+      <div class="form-group">
+        <label for="district">District:</label>
+        <select id="district" required></select>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" required>
+        <div class="error" id="passwordError"></div>
+      </div>
+
+      <button type="submit" class="btn-submit">Register</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 CyberGuard Insights. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      // Define 10 Tanzanian regions with districts
+      const regions = {
+        "Dar es Salaam": ["Ilala", "Kinondoni", "Temeke"],
+        "Arusha": ["Arusha Urban", "Arusha Rural", "Meru"],
+        "Mwanza": ["Ilemela", "Nyamagana", "Ukerewe"],
+        "Dodoma": ["Dodoma Urban", "Chamwino", "Kondoa"],
+        "Mbeya": ["Mbeya Urban", "Mbeya Rural", "Rungwe"],
+        "Tanga": ["Tanga Urban", "Muheza", "Lushoto"],
+        "Morogoro": ["Morogoro Urban", "Gairo", "Kilombero"],
+        "Kigoma": ["Kigoma-Ujiji", "Kasulu", "Kibondo"],
+        "Tabora": ["Tabora Urban", "Igunga", "Nzega"],
+        "Mtwara": ["Mtwara Urban", "Masasi", "Nanyumbu"]
+      };
+
+      // Populate regions dropdown
+      $.each(regions, function (region, districts) {
+        $('#region').append(`<option value="${region}">${region}</option>`);
+      });
+
+      // Update districts dropdown when a region is selected
+      $('#region').change(function () {
+        const selectedRegion = $(this).val();
+        $('#district').empty();
+        if (regions[selectedRegion]) {
+          $.each(regions[selectedRegion], function (index, district) {
+            $('#district').append(`<option value="${district}">${district}</option>`);
+          });
+        }
+      });
+
+      // Form validation on submit
+      $('#registrationForm').on('submit', function (e) {
+        e.preventDefault();
+
+        // Trim the registration number to remove extra spaces
+        const regValue = $('#regNumber').val().trim();
+        // Regex: must start with BCS (or bcs) followed by - then 2 digits, a dash, 4 digits, a dash, and 4 digits.
+        const regNumberPattern = /^BCS-\d{2}-\d{4}-\d{4}$/i;
+        // Email must include the '@' symbol
+        const emailPattern = /@/;
+        let isValid = true;
+
+        // Validate registration number format
+        if (!regNumberPattern.test(regValue)) {
+          $('#regError').text('Invalid registration number format. Expected format: BCS-00-0000-0000');
+          isValid = false;
+        } else {
+          $('#regError').text('');
+        }
+
+        // Validate email contains '@'
+        if (!emailPattern.test($('#email').val())) {
+          $('#emailError').text('Email must contain an @ symbol.');
+          isValid = false;
+        } else {
+          $('#emailError').text('');
+        }
+
+        // Validate password confirmation
+        if ($('#password').val() !== $('#confirmPassword').val()) {
+          $('#passwordError').text('Passwords do not match.');
+          isValid = false;
+        } else {
+          $('#passwordError').text('');
+        }
+
+        if (isValid) {
+          alert('registration susesful');
+          window.location.href = "../my blog.html";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Isaac Sinnon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Dark and Light Mode */
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    .dark-mode header {
+      background-color: #121212;
+    }
+
+    .dark-mode footer {
+      background-color: #121212;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #ccc;
+    }
+
+    /* Contact Section Styles */
+    #contact {
+      padding: 5rem 2rem;
+      background-color: #f4f4f4;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Contact Form */
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #333;
+      background-color: #fff;
+    }
+
+    .contact-form button {
+      background-color: #003366;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #004f99;
+    }
+
+    /* Map Section */
+    .map {
+      margin-top: 3rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    /* Social Media Links */
+    .social-media {
+      margin-top: 4rem;
+    }
+
+    .social-media a {
+      margin: 0 15px;
+      font-size: 2rem;
+      color: #003366;
+      transition: color 0.3s;
+    }
+
+    .social-media a:hover {
+      color: #004f99;
+    }
+
+    /* Dark/Light Mode Toggle */
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #003366;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mode Toggle Button -->
+  <button class="mode-toggle" onclick="toggleMode()">Switch to Dark Mode</button>
+
+  <!-- Header -->
+  <header>
+    <h1>Contact Me</h1>
+    <p>Have a question or want to collaborate? Get in touch!</p>
+  </header>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Contact Form</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- Google Map Embed -->
+      <div class="map">
+        <h3>My Location</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d483469.1336156276!2d34.7950505!3d-6.7926991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c303da0c1d9fb%3A0xa5572b31d6c62f27!2sTanzania!5e0!3m2!1sen!2sus!4v1697114704083!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="social-media">
+        <h3>Connect with Me</h3>
+        <a href="https:wa.me/message/U35Y5LDVHNQ2L1" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/isaacsinnon" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Toggle Dark/Light Mode
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+      const modeToggleButton = document.querySelector(".mode-toggle");
+      if (document.body.classList.contains("dark-mode")) {
+        modeToggleButton.innerText = "Switch to Light Mode";
+      } else {
+        modeToggleButton.innerText = "Switch to Dark Mode";
+      }
+    }
+  </script>
+
+</body>
+</html>
